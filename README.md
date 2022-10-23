@@ -1,6 +1,7 @@
 # BiorhythmCalculator
-A Java program with interactive GUI which calculates a user's biorhythm given their birthdate and the target date
-**Uses JFreeChart library** to construct the graph, Java Swing and AWT libraries for the rest of the GUI
+A Java program with interactive GUI which calculates a user's biorhythm given their birthdate and the target date.
+
+_**Uses JFreeChart library**_ to construct the graph, Java Swing and AWT libraries for the rest of the GUI
 
 Theory behind Biorhythms:
 The pseudoscience of Biorhythms was attributed to the famous psychiatrist Sigmund Freud and his associates Dr Wilhelm Fliess and psychologist Dr Hermann Swoboda. They hypothesized that Biorhythms might determine the highs and lows of our life based on our birth date. The Biorhythms comprises three cycles: a 23-day physical cycle, a 28-day emotional cycle and a 33-day intellectual cycle.
