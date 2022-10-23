@@ -42,14 +42,16 @@ public class MainClass
     {
         try
         {
+        	// Adjusts the program's components to be of the same design language as the operating system that the program runs on
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
             JFrame.setDefaultLookAndFeelDecorated(true);
-            new MainClass();
         }
         catch (Exception e)
         {
             JOptionPane.showMessageDialog(null, "UIManager failed to load the setLookAndFeel method!", "Error!", JOptionPane.ERROR_MESSAGE);
         }
+        
+        new MainClass();
     }
 
     MainClass()
@@ -72,7 +74,8 @@ public class MainClass
         // Initializes the Panel which will contain the image and the text
         JPanel centerPanel = new JPanel();
 
-        JLabel text = new JLabel("<html>Biorhythms, as pseudoscience, were developed by Wilhelm Fliess in the late 19th century,<br/>" +
+        JLabel text = new JLabel(
+        		"<html>Biorhythms, as pseudoscience, were developed by Wilhelm Fliess in the late 19th century,<br/>" +
                 "and were popularized in the United States in the late 1970s.<br/><br/>" +
                 "The biorhythm theory suggests that humans have 3 biological cycles:<br/><br/>"
                 + "<font color='red'>Physical - coordination, strength, well-being</font><br/>"
@@ -92,12 +95,12 @@ public class MainClass
 
         try
         {
-            ImageIcon temporary = new ImageIcon(new URL("https://dogemuchwow.com/wp-content/uploads/2020/09/biorhythm-chart-doge.jpg"));
+            ImageIcon temporary = new ImageIcon(new URL("https://miro.medium.com/max/512/1*XGk-4-N5QFRC15NVvFHkzQ.jpeg"));
             img.setIcon(new ImageIcon(temporary.getImage().getScaledInstance(600, 350, Image.SCALE_SMOOTH)));
         }
         catch (MalformedURLException e)
         {
-            JOptionPane.showMessageDialog(null, "Error!", "Image URL could not be found!", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Error!", "Tutorial image URL could not be found!", JOptionPane.ERROR_MESSAGE);
         }
 
         centerPanel.add(img);
@@ -106,25 +109,24 @@ public class MainClass
         JButton continueBtn = new JButton("Continue");
         continueBtn.setBackground(Color.GREEN);
         continueBtn.setFont(titleFont);
+        
+        // Launches the program after the 'continue' button is pressed
+        continueBtn.addActionListener(e -> {
+            frame.dispose();
+            initializeJFrame();
+            resetComponents();
+        });
 
         frame.add(title, BorderLayout.NORTH);
         frame.add(centerPanel, BorderLayout.CENTER);
         frame.add(continueBtn, BorderLayout.SOUTH);
 
         frame.setCursor(initializeCursor());
-        // sets the frame to the smallest possible size
+        
         frame.pack();
-        // makes the window appear in the middle of the screen
         frame.setLocationRelativeTo(null);
         frame.setResizable(false);
         frame.setVisible(true);
-
-        // Launches the program after the user read the tutorial
-        continueBtn.addActionListener(e -> {
-            frame.dispose();
-            initializeJFrame();
-            resetComponents();
-        });
     }
 
     void initializeJFrame()
@@ -135,8 +137,14 @@ public class MainClass
 
         f.setCursor(initializeCursor());
 
+        
+        // splits the window in half vertically
+        JSplitPane mainPanel = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, initializeLeftSide(), initializeRightSide());
+        // makes the middle divider impossible to move around
+        mainPanel.setEnabled(false);
+        
         // adds all the components of the window (buttons, labels, text fields)
-        f.add(initializeComponents());
+        f.add(mainPanel);
 
         f.pack();
         f.setLocationRelativeTo(null);
@@ -144,29 +152,19 @@ public class MainClass
         f.setVisible(true);
     }
 
+    // Sets a custom cursor for the program
     Cursor initializeCursor()
     {
-        Image image = null;
-
-        try {
-            image = new ImageIcon(new URL("https://img.icons8.com/fluency/96/cursor--v2.png")).getImage();
-
-        } catch (MalformedURLException e1) {
-            JOptionPane.showMessageDialog(null, "Error!", "Image URL could not be found!", JOptionPane.ERROR_MESSAGE);
+        try 
+        {
+        	Image image = new ImageIcon(new URL("https://img.icons8.com/fluency/96/cursor--v2.png")).getImage();
+        	return Toolkit.getDefaultToolkit().createCustomCursor(image , new Point(0,0), "img");
+        } 
+        catch (MalformedURLException e1) 
+        {
+            System.out.println("The cursor image could not be set! (initializeCursor())");
+            return null;
         }
-
-        return Toolkit.getDefaultToolkit().createCustomCursor(image , new Point(0,0), "img");
-    }
-
-    JComponent initializeComponents()
-    {
-        // splits the window in half vertically
-        JSplitPane mainPanel = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, initializeLeftSide(), initializeRightSide());
-
-        // makes the middle divider impossible to move around
-        mainPanel.setEnabled(false);
-
-        return mainPanel;
     }
 
     // Calculates the user's biorhythm given the difference between the two dates
@@ -174,7 +172,7 @@ public class MainClass
 
         // DIFFERENCE BETWEEN DATES //
 
-        //converts birthdate and target date into readable format for java.time
+        // Converts birthdate and target date into readable format for java.time
         LocalDateTime date1 = LocalDate.parse(bFullDate, dtf).atStartOfDay();
         LocalDateTime date2 = LocalDate.parse(tFullDate, dtf).atStartOfDay();
 
@@ -228,7 +226,9 @@ public class MainClass
         centerPanel.repaint();
     }
 
-    // Initializes the right side of the JFrame
+    
+    @SuppressWarnings("serial")
+	// Initializes the right side of the JFrame
     JComponent initializeRightSide()
     {
         JPanel mainPanel = new JPanel(new BorderLayout());
@@ -259,7 +259,8 @@ public class MainClass
                 // Overrides the 'isCellEditable' method of the JTable, which by default, allows the user to edit the contents of a cell in a JTable
                 // Instead, this overridden method restricts the user from editing the JTable
                 @Override
-                public boolean isCellEditable(int row, int column) {
+                public boolean isCellEditable(int row, int column) 
+                {
                     //all cells false
                     return false;
                 }
@@ -320,7 +321,7 @@ public class MainClass
 
 
         createGraph();
-
+        // the graph is added to the centerPanel is the createGraph() function
 
         mainPanel.add(centerPanel, BorderLayout.CENTER);
 
@@ -649,7 +650,7 @@ public class MainClass
         int maxDays = daysPerMonth[--monthNum];
 
         // If the month is February, and it's a leap year, expand the maximum days allowed by one
-        if(monthNum == 2 && year % 4 == 0)
+        if(monthNum == 1 && year % 4 == 0)
             maxDays++;
 
         // if the day that the user has entered is within the reasonable bounds, they can proceed, else, return an error
