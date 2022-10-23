@@ -96,7 +96,7 @@ public class MainClass
         try
         {
             ImageIcon temporary = new ImageIcon(new URL("https://miro.medium.com/max/512/1*XGk-4-N5QFRC15NVvFHkzQ.jpeg"));
-            img.setIcon(new ImageIcon(temporary.getImage().getScaledInstance(600, 350, Image.SCALE_SMOOTH)));
+            img.setIcon(new ImageIcon(temporary.getImage().getScaledInstance(500, 350, Image.SCALE_SMOOTH)));
         }
         catch (MalformedURLException e)
         {
@@ -384,7 +384,7 @@ public class MainClass
         dataset.addSeries(intel);
 
         // Chart title, X axis, Y axis, dataset used, plot orientation, legend, tooltips, urls
-        chart = ChartFactory.createXYLineChart(null, "Date", null, dataset, PlotOrientation.VERTICAL, true, true, false);
+        chart = ChartFactory.createXYLineChart(null, "Date (From the Target Date)", null, dataset, PlotOrientation.VERTICAL, true, true, false);
 
         //XYPlot plot = chart.getXYPlot();
         chart.getXYPlot().setDataset(chart.getXYPlot().getDataset());
