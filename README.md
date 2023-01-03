@@ -1,6 +1,6 @@
 # BiorhythmCalculator
 A Java program with interactive GUI which calculates a user's biorhythm given their birthdate and the target date.  
-The code may be found in the **src** folder
+The code of the program is located in the **src** folder.
 
 _**Uses JFreeChart library**_ to construct the graph, Java Swing and AWT libraries for the rest of the GUI
 
