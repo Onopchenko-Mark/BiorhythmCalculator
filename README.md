@@ -1,5 +1,6 @@
 # BiorhythmCalculator
-A Java program with interactive GUI which calculates a user's biorhythm given their birthdate and the target date.
+A Java program with interactive GUI which calculates a user's biorhythm given their birthdate and the target date.  
+The code may be found in the **src** folder
 
 _**Uses JFreeChart library**_ to construct the graph, Java Swing and AWT libraries for the rest of the GUI
 
@@ -23,3 +24,7 @@ On the contrary, negative biorhythm values are theorized to hinder an individual
 Sources:
 MACKENZIE, B. (2013) Biorhythms [WWW] Available from: https://www.brianmac.co.uk/biorhythms.htm [Accessed 22/10/2022]
 “Biorhythm (Pseudoscience).” Wikipedia, Wikimedia Foundation, 9 Sept. 2022, https://en.wikipedia.org/wiki/Biorhythm_(pseudoscience). 
+
+## Installation Steps:  
+In the **bin** folder, locate the **biorhythm_calculator.exe** file.  
+Extract it onto your machine and run it like a standart application.  
