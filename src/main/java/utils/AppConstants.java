@@ -1,4 +1,4 @@
-package biorhythmcalc;
+package utils;
 
 import java.awt.Font;
 

@@ -4,6 +4,9 @@
 # Maven build directory
 target/
 
+# Database
+src/main/resources/database/*
+
 # Log files
 *.log
 

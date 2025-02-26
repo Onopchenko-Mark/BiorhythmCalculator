@@ -1,13 +1,13 @@
-package biorhythmcalc;
+package model;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
-public class BiorhythmRecord {
+public class RecordModel {
     private LocalDate birthDate, targetDate;
     private double physical, emotional, intellectual;
 
-    BiorhythmRecord(LocalDate birthDate, LocalDate targetDate) {
+    public RecordModel(LocalDate birthDate, LocalDate targetDate) {
 	this.birthDate = birthDate;
 	this.targetDate = targetDate;
 
